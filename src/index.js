@@ -1,96 +1,72 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import jsonData from './feiyan.json'
-import './06style.css'
 
-console.log(jsonData)
 
-let provincesObj = {
-    // "广东省":{
-    //     confirm:0,
-    //     suspect:0,
-    //     heal:0,
-    //     deal:0,
-    // }
+class ParentCom extends React.Component {
+  render() {
+    console.log(this.props)
+    return (
+      <div>
+        <h1>组件插槽</h1>
+        {this.props.children}
+        <ChildCom>
+          <h1 data-position="header">这是放置到头部的内容</h1>
+          <h1 data-position="main">这是放置到主要的内容</h1>
+          <h1 data-position="footer">这是放置到尾部的内容</h1>
+        </ChildCom>
+      </div>
+    )
+  }
 }
 
-jsonData.data.list.forEach((item,i) => {
-    if(provincesObj[item.province]==undefined){
-        provincesObj[item.province] = {
-            confirm:0,
-            heal:0,
-            dead:0,
-        }
-    }
-
-    item.confirm = item.confirm?item.confirm:0;
-    item.heal = item.heal?item.heal:0;
-    item.dead = item.dead?item.dead:0;
-
-    provincesObj[item.province] = {
-        confirm:provincesObj[item.province].confirm+item.confirm,
-        heal:provincesObj[item.province].heal+item.heal,
-        dead:provincesObj[item.province].dead+item.dead
-    }
-});
-
-let provinceList = []
-for (const key in provincesObj) {
-    provincesObj[key].province = key;
-    provinceList.push(provincesObj[key])
+class ChildCom extends React.Component {
+  render() {
+    let headerCom, mainCom, footerCom;
+    this.props.children.forEach((item, index) => {
+      if (item.props['data-position'] === 'header') {
+        headerCom = item
+      } else if (item.props['data-position'] === 'main') {
+        mainCom = item
+      } else {
+        footerCom = item
+      }
+    })
+    return (
+      <div>
+        <div className="header">
+          {headerCom}
+        </div>
+        <div className="main">
+          {mainCom}
+        </div>
+        <div className="footer">
+          {footerCom}
+        </div>
+      </div>
+    )
+  }
 }
 
-
-console.log(provincesObj)
-console.log(provinceList)
-
-//排序
-let provinceListSort = provinceList.sort((a,b)=>{
-    if(a.confirm<b.confirm){
-        return 1;
-    }else{
-        return -1;
+class RootCom extends React.Component {
+  constructor(props) {
+    super(props)
+    //console.log(props)
+    this.state = {
+      arr: [1, 2, 3]
     }
-})
-
-console.log(provinceListSort)
-
-
-class Bili  extends React.Component{
-    constructor(props){
-        super(props)
-    }
-    render(){
-        return (
-            <div>
-                <h1>中国病例</h1>
-                <ul>
-                    <li>
-                        <span>地区</span>
-                        <span>确诊</span>
-                        <span>死亡</span>
-                        <span>治愈</span>
-                    </li>
-                    {
-                        this.props.list.map((item,index)=>{
-                            return (
-                                <li>
-                                    <span>{item.province}</span>
-                                    <span>{item.confirm}</span>
-                                    <span>{item.dead}</span>
-                                    <span>{item.heal}</span>
-                                </li> 
-                            )
-                        })
-                    }
-                </ul>
-            </div>
-        )
-    }
+  }
+  render() {
+    return (
+      <ParentCom>
+        <h2 data-name="a" data-index={this.state.arr[0]}>子组件1</h2>
+        <h2 data-name="b" data-index={this.state.arr[1]}>子组件2</h2>
+        <h2 data-name="c" data-index={this.state.arr[2]}>子组件3</h2>
+      </ParentCom> 
+    )
+  }
 }
-
 
 ReactDOM.render(
-    <Bili list={provinceListSort}></Bili>,
-    document.querySelector('#root')
+  <RootCom></RootCom>,
+  document.querySelector("#root")
 )
