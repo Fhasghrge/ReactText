@@ -1,14 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-
-
-class Demo extends React.Component {
-  constructor() {
-    
-  }
-}
+import App from "./app.jsx"
 
 ReactDOM.render(
-  element,
+  <App/>,
   document.getElementById('root')
 );
