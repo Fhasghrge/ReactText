@@ -1,0 +1,36 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-size: 16px;
+}
+#manage {
+  display: flex;
+}
+#manage nav {
+  background-color: #ddd;
+  flex: 1;
+  height: 100vh;
+}
+#manage nav a {
+  display: block;
+  text-align: center;
+  height: 4rem;
+  text-decoration: none;
+  line-height: 4rem;
+  border-radius: 2rem;
+  margin: 2rem 0.5rem;
+  background-color: #82ccdd;
+  color: white;
+  font-weight: bold;
+  font-size: 1.6rem;
+}
+#manage nav a:hover {
+  box-shadow: 2px 2px 12px white;
+}
+#manage main {
+  background-color: skyblue;
+  flex: 4;
+  height: 100vh;
+}

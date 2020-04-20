@@ -1,6 +1,6 @@
 import React from 'react'
 import head_img from '../../image/avatar.jpg'
-import './autor.less'
+import './autor.css'
 export default class Autor extends React.Component {
   // eslint-disable-next-line no-useless-constructor
   constructor(props) {
@@ -9,7 +9,9 @@ export default class Autor extends React.Component {
   render() {
     return (
       <div className="autor">
-        <img src={head_img} alt={this.props.info.name}/>
+        <div id="img">
+          <img src={head_img} alt={this.props.info.name}/>
+        </div>
         <div id='autor_name'>{this.props.info.name}</div>
       </div>
     )
