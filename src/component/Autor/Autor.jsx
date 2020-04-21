@@ -1,5 +1,5 @@
 import React from 'react'
-import head_img from '../../image/avatar.jpg'
+import head_img from '../../assets/image/avatar.jpg'
 import './autor.css'
 export default class Autor extends React.Component {
   // eslint-disable-next-line no-useless-constructor
@@ -10,9 +10,9 @@ export default class Autor extends React.Component {
     return (
       <div className="autor">
         <div id="img">
-          <img src={head_img} alt={this.props.info.name}/>
+          <img src={head_img} alt='暂时不管了'/>
         </div>
-        <div id='autor_name'>{this.props.info.name}</div>
+        <div id='autor_name'>暂时不管了</div>
       </div>
     )
   }

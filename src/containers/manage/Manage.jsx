@@ -5,7 +5,7 @@ import Fe from '../../component/fe/Fe'
 import Be from '../../component/be/Be'
 import Alg from '../../component/alg/Alg'
 import Others from '../../component/others/Others'
-import Autor from '../../containers/Autor/Autor'
+import Autor from '../../component/Autor/Autor'
 import './Manage.css'
 
 export default class Manage extends React.Component {
