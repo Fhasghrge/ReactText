@@ -1,25 +1,19 @@
-import React from 'react'
-// import Silder from '../silder/Silder'
+import {connect} from 'react-redux';
 import Manage from '../manage/Manage'
-// import Main from '../main/Main';
-// import './app.css'
-export default class App extends React.Component{
-  constructor(props) {
-    super(props)
-    this.state = {
+import {withRouter} from 'react-router-dom'
 
-    }
-  }
-  componentWillMount() {
-
-  }
-  render() {
-    return (
-      <div id="app">
-        {/* <Silder></Silder> */}
-        {/* <Main></Main> */}
-        <Manage></Manage>
-      </div>
-    )
+// 接收是否登录
+const mapStateToProps = state => {
+  return {
+    isLogin: state.login
   }
 }
+
+// 登录确定
+const mapDispatchToProps = dispatch => {
+  return {
+    login: () => dispatch({type:'login'})
+  }
+}
+const Managed =  connect(mapStateToProps, mapDispatchToProps)(Manage)
+export default withRouter(Managed)
