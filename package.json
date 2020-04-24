@@ -138,9 +138,19 @@
   "babel": {
     "presets": [
       "react-app"
+    ],
+    "plugins": [
+      [
+        "import",
+        {
+          "libraryName": "antd",
+          "style": "css"
+        }
+      ]
     ]
   },
   "devDependencies": {
+    "babel-plugin-import": "^1.13.0",
     "less-loader": "^5.0.0"
   }
 }
